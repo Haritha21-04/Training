@@ -1,0 +1,62 @@
+package com.example.demo.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.example.demo.Service.UserService;
+import com.example.demo.entity.User;
+
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+@Controller
+public class UserController {
+
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @PostMapping("/userLogin")
+    public String login(String email, String password, HttpSession session, HttpServletResponse response) {
+        User user = userService.login(email, password);
+
+        if (user != null) {
+            session.setAttribute("userObj", user);
+            return "redirect:/index.jsp";
+        } else {
+            session.setAttribute("errorMsg", "Invalid email & password");
+            return "redirect:/user_login.jsp";
+        }
+    }
+
+    @GetMapping("/userLogout")
+    public String logout(HttpSession session, HttpServletResponse response) {
+        session.removeAttribute("userObj");
+        session.setAttribute("succMsg", "User Logout Successfully");
+        return "redirect:/user_login.jsp";
+    }
+
+    
+    
+
+        @PostMapping("/user_register")
+        public String registerUser(String fullname, String email, String password, HttpSession session, HttpServletResponse response) {
+            User user = new User(fullname, email, password);
+            boolean registered = userService.registerUser(user) != null;
+
+            if (registered) {
+                session.setAttribute("sucMsg", "Register Successfully");
+                return "redirect:/signup.jsp";
+            } else {
+                session.setAttribute("errorMsg", "Something went wrong during registration");
+                return "redirect:/signup.jsp";
+            }
+        }
+
+        // Add other request mappings and methods as needed
+    }
+
+}

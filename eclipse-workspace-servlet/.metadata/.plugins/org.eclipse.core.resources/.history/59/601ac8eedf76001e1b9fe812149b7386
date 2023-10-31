@@ -1,0 +1,5 @@
+package com.Hospital.DoctorAppoint.admin.servlet;
+
+public class DeleteDoctor {
+
+}

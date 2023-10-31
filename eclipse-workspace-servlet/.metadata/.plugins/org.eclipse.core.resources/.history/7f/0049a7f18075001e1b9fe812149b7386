@@ -1,0 +1,71 @@
+package com.example.demo.controller;
+
+import java.util.List;
+
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import com.example.demo.entities.Doctor;
+import com.example.demo.services.DoctorService;
+
+@Controller
+@RequestMapping("/admin")
+public class AdminController {
+    private final DoctorService doctorService;
+
+    public AdminController(DoctorService doctorService) {
+        this.doctorService = doctorService;
+    }
+
+    @GetMapping("/doctors")
+    public String listDoctors(Model model) {
+        List<Doctor> doctors = doctorService.getAllDoctors();
+        model.addAttribute("doctors", doctors);
+        return "admin/doctors";
+    }
+
+    @GetMapping("/doctors/{id}")
+    public String viewDoctor(@PathVariable Long id, Model model) {
+        Doctor doctor = (Doctor) doctorService.getDoctorById(id);
+        model.addAttribute("doctor", doctor);
+        return "admin/doctor_details";
+    }
+
+    @GetMapping("/doctors/add")
+    public String showAddDoctorForm(Model model) {
+        model.addAttribute("doctor", new Doctor());
+        return "admin/add_doctor";
+    }
+
+    @PostMapping("/doctors/add")
+    public String addDoctor(@ModelAttribute Doctor doctor) {
+        doctorService.createDoctor(doctor);
+        return "redirect:/admin/doctors";
+    }
+
+    @GetMapping("/doctors/{id}/edit")
+    public String showEditDoctorForm(@PathVariable Long id, Model model) {
+        Doctor doctor = (Doctor) doctorService.getDoctorById(id);
+        model.addAttribute("doctor", doctor);
+        return "admin/edit_doctor";
+    }
+
+    @PostMapping("/doctors/{id}/edit")
+    public String editDoctor(@PathVariable Long id, @ModelAttribute Doctor updatedDoctor) {
+        Doctor doctor = (Doctor) doctorService.getDoctorById(id);
+        if (doctor != null) {
+            doctor.setUsername(updatedDoctor.getUsername());
+            // Update other fields as needed
+            doctorService.updateDoctor(doctor);
+        }
+        return "redirect:/admin/doctors";
+    }
+
+    @GetMapping("/doctors/{id}/delete")
+    public String deleteDoctor(@PathVariable Long id) {
+        doctorService.deleteDoctor(id);
+        return "redirect:/admin/doctors";
+    }
+}

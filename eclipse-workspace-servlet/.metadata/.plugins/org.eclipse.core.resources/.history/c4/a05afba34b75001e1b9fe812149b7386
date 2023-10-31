@@ -1,0 +1,97 @@
+package com.example.demo.entities;
+
+
+
+import java.time.LocalDate;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+
+
+@Entity
+public class Leave<Doctor, LeaveStatus> {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private long id;
+
+  @ManyToOne
+  @JoinColumn(name="doctor_id") 
+  private Doctor doctor;
+
+  private LocalDate fromDate;
+  private LocalDate toDate;
+
+  private String reason;
+
+  @Enumerated(EnumType.STRING)
+  private LeaveStatus status;
+
+  public Leave() {
+
+  }
+
+  public Leave(Doctor doctor, LocalDate fromDate, LocalDate toDate, String reason, LeaveStatus status) {
+    this.doctor = doctor;
+    this.fromDate = fromDate;
+    this.toDate = toDate;
+    this.reason = reason;
+    this.status = status;
+  }
+
+  public long getId() {
+    return id;
+  }
+
+  public void setId(long id) {
+    this.id = id;
+  }
+
+  public Doctor getDoctor() {
+    return doctor;
+  }
+
+  public void setDoctor(Doctor doctor) {
+    this.doctor = doctor;
+  }
+
+  public LocalDate getFromDate() {
+    return fromDate;
+  }
+
+  public void setFromDate(LocalDate fromDate) {
+    this.fromDate = fromDate;
+  }
+
+  public LocalDate getToDate() {
+    return toDate;
+  }
+
+  public void setToDate(LocalDate toDate) {
+    this.toDate = toDate;
+  }
+
+  public String getReason() {
+    return reason;
+  }
+
+  public void setReason(String reason) {
+    this.reason = reason;
+  }
+
+  public LeaveStatus getStatus() {
+    return status;
+  }
+
+  public void setStatus(LeaveStatus status) {
+    this.status = status;
+  }
+
+}

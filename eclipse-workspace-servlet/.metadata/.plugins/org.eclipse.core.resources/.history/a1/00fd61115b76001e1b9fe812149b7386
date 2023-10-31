@@ -1,0 +1,55 @@
+package com.example.demo.controller;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.example.demo.entity.Doctor;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
+
+@Controller
+@RequestMapping("/doctorUpdateProfile")
+public class EditProfileController {
+
+    private final Doctor doctorDao;
+
+    public EditProfileController(Doctor doctorDao) {
+        this.doctorDao = doctorDao;
+    }
+
+    @PostMapping
+    public String updateDoctorProfile(HttpServletRequest req, RedirectAttributes redirectAttributes) {
+        try {
+            String fullName = req.getParameter("fullname");
+            String dob = req.getParameter("dob");
+            String qualification = req.getParameter("qualification");
+            String spec = req.getParameter("spec");
+            String email = req.getParameter("email");
+            String mobno = req.getParameter("mobno");
+            int id = Integer.parseInt(req.getParameter("id"));
+
+            Doctor d = new Doctor(id, fullName, dob, qualification, spec, email, mobno, "");
+
+            if (doctorDao.editDoctorProfile(d)) {
+                Doctor updateDoctor = doctorDao.getDoctorById(id);
+                HttpSession session = req.getSession();
+                session.setAttribute("succMsgd", "Doctor Update Successfully..");
+                session.setAttribute("doctObj", updateDoctor);
+                return "redirect:/doctor/edit_profile"; // Redirect to the doctor's edit profile page
+            } else {
+                redirectAttributes.addFlashAttribute("errorMsgd", "Something wrong on the server");
+                return "redirect:/doctor/edit_profile"; // Redirect back to the edit profile page
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "errorPage"; // Handle exceptions by redirecting to an error page
+        }
+    }
+}

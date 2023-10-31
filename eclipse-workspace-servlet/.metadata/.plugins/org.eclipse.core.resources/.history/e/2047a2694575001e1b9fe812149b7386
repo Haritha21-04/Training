@@ -1,0 +1,67 @@
+package com.example.demo.entities;
+
+
+import java.util.Date;
+
+import javax.print.Doc;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+
+@Entity
+public class Leave {
+
+  @Id
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  private long id;
+  
+  @ManyToOne
+  @JoinColumn(name="doctor_id")
+  private Doc doctor;
+  
+  private Date fromDate;
+  private Date toDate;
+  private String reason;
+  private String status;
+
+  // getters and setters 
+  
+  public Leave() {
+
+  }
+
+  public Leave(Doc doctor, Date fromDate, Date toDate, String reason, String status) {
+    this.doctor = doctor;
+    this.setFromDate(fromDate);
+    this.setToDate(toDate);  
+    this.reason = reason;
+    this.status = status;
+  }
+
+public void setStatus(String string) {
+	// TODO Auto-generated method stub
+	
+}
+
+public Date getToDate() {
+	return toDate;
+}
+
+public void setToDate(Date toDate) {
+	this.toDate = toDate;
+}
+
+public Date getFromDate() {
+	return fromDate;
+}
+
+public void setFromDate(Date fromDate) {
+	this.fromDate = fromDate;
+}
+  
+}

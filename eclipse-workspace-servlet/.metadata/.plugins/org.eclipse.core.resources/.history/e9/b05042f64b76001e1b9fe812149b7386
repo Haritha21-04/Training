@@ -1,0 +1,30 @@
+package com.example.demo.Service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.Repository.SpecialistRepository;
+import com.example.demo.entity.Specialist;
+
+import java.util.List;
+
+@Service
+public class SpecialistService {
+
+    private final SpecialistRepository specialistRepository;
+
+    @Autowired
+    public SpecialistService(SpecialistRepository specialistRepository) {
+        this.specialistRepository = specialistRepository;
+    }
+
+    public Specialist addSpecialist(Specialist specialist) {
+        return specialistRepository.save(specialist);
+    }
+
+    public List<Specialist> getAllSpecialists() {
+        return specialistRepository.findAll();
+    }
+
+    // Add other service methods as needed
+}

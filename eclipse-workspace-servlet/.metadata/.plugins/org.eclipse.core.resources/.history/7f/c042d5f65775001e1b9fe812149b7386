@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Exchange Rates</title>
+</head>
+<body>
+    <h1>Exchange Rates</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Base Currency</th>
+            <th>Target Currency</th>
+            <th>Rate</th>
+        </tr>
+        <c:forEach items="${exchangeRates}" var="exchangeRate">
+            <tr>
+                <td>${exchangeRate.id}</td>
+                <td>${exchangeRate.baseCurrency}</td>
+                <td>${exchangeRate.targetCurrency}</td>
+                <td>${exchangeRate.rate}</td>
+            </tr>
+        </c:forEach>
+    </table>
+</body>
+</html>

@@ -1,0 +1,52 @@
+package com.example.demo.Service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.example.demo.Repository.DoctorRepository;
+import com.example.demo.entity.Doctor;
+
+@Service
+public class DoctorService {
+
+    private final DoctorRepository doctorRepository;
+
+    public DoctorService(DoctorRepository doctorRepository) {
+        this.doctorRepository = doctorRepository;
+    }
+
+    public Doctor registerDoctor(Doctor doctor) {
+        return doctorRepository.save(doctor);
+    }
+
+    public List<Doctor> getAllDoctors() {
+        return doctorRepository.findAll();
+    }
+
+    public Doctor getDoctorById(int id) {
+        return doctorRepository.findById(id).orElse(null);
+    }
+
+    public Doctor login(String email, String password) {
+        return doctorRepository.findByEmailAndPassword(email, password);
+    }
+
+    public boolean updateDoctor(Doctor doctor) {
+        if (doctorRepository.existsById(doctor.getId())) {
+            doctorRepository.save(doctor);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean deleteDoctor(int id) {
+        if (doctorRepository.existsById(id)) {
+            doctorRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+    // Add other service methods as needed
+}

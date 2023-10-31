@@ -1,0 +1,39 @@
+package com.example.demo.implementations;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.entities.AttendanceService;
+
+import jakarta.transaction.Transactional;
+
+@Service
+public abstract class AttendanceServiceImpl implements AttendanceService {
+
+  @Autowired
+  private AttendanceRepository attendanceRepo;
+  
+  @Override
+  public List<Attendance> getAttendanceByDate(LocalDate date) {
+    return attendanceRepo.findByDate(date);
+  }
+
+  @Override
+  @Transactional
+  public void markAttendance(long doctorId, LocalDate date, boolean present) {
+    
+    // Check if attendance already exists
+    Attendance attendance = attendanceRepo.findByDoctorIdAndDate(doctorId, date);
+    
+    if(attendance == null) {
+      // Create new attendance  
+      attendance = new Attendance();
+      attendance.setDoctorId(doctorId);
+      attendance.setDate(date);
+    }
+    
+    attendance.setPresent(present);
+    attendanceRepo.save(attendance); 
+  }
+  
+}

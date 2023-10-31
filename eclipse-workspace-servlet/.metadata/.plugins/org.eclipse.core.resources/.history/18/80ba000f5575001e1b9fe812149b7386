@@ -1,0 +1,52 @@
+package com.example.demo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.entities.ExchangeRate;
+import com.example.demo.repository.ExchangeRateRepository;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class ExchangeRateService {
+    @Autowired
+    private ExchangeRateRepository exchangeRateRepository;
+
+    // Create and save an ExchangeRate
+    public ExchangeRate createExchangeRate(String baseCurrency, String targetCurrency, Double rate) {
+        ExchangeRate exchangeRate = new ExchangeRate(baseCurrency, targetCurrency, rate);
+        return exchangeRateRepository.save(exchangeRate);
+    }
+
+    // Retrieve all ExchangeRates
+    public List<ExchangeRate> getAllExchangeRates() {
+        return exchangeRateRepository.findAll();
+    }
+
+    // Retrieve an ExchangeRate by its ID
+    public Optional<ExchangeRate> getExchangeRateById(Long id) {
+        return exchangeRateRepository.findById(id);
+    }
+
+    // Update an existing ExchangeRate
+    public ExchangeRate updateExchangeRate(Long id, String baseCurrency, String targetCurrency, Double rate) {
+        Optional<ExchangeRate> optionalExchangeRate = exchangeRateRepository.findById(id);
+        if (optionalExchangeRate.isPresent()) {
+            ExchangeRate exchangeRate = optionalExchangeRate.get();
+            exchangeRate.setBaseCurrency(baseCurrency);
+            exchangeRate.setTargetCurrency(targetCurrency);
+            exchangeRate.setRate(rate);
+            return exchangeRateRepository.save(exchangeRate);
+        } else {
+            throw new IllegalArgumentException("ExchangeRate not found with ID: " + id);
+        }
+    }
+
+    // Delete an ExchangeRate by its ID
+    public void deleteExchangeRate(Long id) {
+        exchangeRateRepository.deleteById(id);
+    }
+}
+

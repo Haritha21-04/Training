@@ -1,0 +1,61 @@
+package com.example.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import com.example.demo.entities.ExchangeRate;
+import com.example.demo.services.ExchangeRateService;
+
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/exchange-rates")
+public class ExchangeRateController {
+    @Autowired
+    private ExchangeRateService exchangeRateService;
+
+    // Create a new ExchangeRate
+    @PostMapping
+    public ResponseEntity<ExchangeRate> createExchangeRate(
+            @RequestParam String baseCurrency,
+            @RequestParam String targetCurrency,
+            @RequestParam Double rate) {
+        ExchangeRate exchangeRate = exchangeRateService.createExchangeRate(baseCurrency, targetCurrency, rate);
+        return ResponseEntity.ok(exchangeRate);
+    }
+
+    // Retrieve all ExchangeRates
+    @GetMapping
+    public ResponseEntity<List<ExchangeRate>> getAllExchangeRates() {
+        List<ExchangeRate> exchangeRates = exchangeRateService.getAllExchangeRates();
+        return ResponseEntity.ok(exchangeRates);
+    }
+
+    // Retrieve an ExchangeRate by its ID
+    @GetMapping("/{id}")
+    public ResponseEntity<ExchangeRate> getExchangeRateById(@PathVariable Long id) {
+        Optional<ExchangeRate> exchangeRate = exchangeRateService.getExchangeRateById(id);
+        return exchangeRate.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    // Update an existing ExchangeRate
+    @PutMapping("/{id}")
+    public ResponseEntity<ExchangeRate> updateExchangeRate(
+            @PathVariable Long id,
+            @RequestParam String baseCurrency,
+            @RequestParam String targetCurrency,
+            @RequestParam Double rate) {
+        ExchangeRate updatedExchangeRate = exchangeRateService.updateExchangeRate(id, baseCurrency, targetCurrency, rate);
+        return ResponseEntity.ok(updatedExchangeRate);
+    }
+
+    // Delete an ExchangeRate by its ID
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteExchangeRate(@PathVariable Long id) {
+        exchangeRateService.deleteExchangeRate(id);
+        return ResponseEntity.noContent().build();
+    }
+}

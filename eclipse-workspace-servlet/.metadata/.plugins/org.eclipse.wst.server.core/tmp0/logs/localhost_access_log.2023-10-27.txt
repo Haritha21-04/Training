@@ -1,0 +1,8 @@
+127.0.0.1 - - [27/Oct/2023:14:32:03 +0530] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [27/Oct/2023:14:32:04 +0530] "GET /Demo/LoginServlet HTTP/1.1" 500 1265
+0:0:0:0:0:0:0:1 - - [27/Oct/2023:14:32:29 +0530] "GET /Demo/ HTTP/1.1" 404 760
+0:0:0:0:0:0:0:1 - - [27/Oct/2023:14:32:40 +0530] "GET /Demo/Login HTTP/1.1" 404 765
+0:0:0:0:0:0:0:1 - - [27/Oct/2023:14:32:59 +0530] "GET /Demo/LoginPage.html HTTP/1.1" 200 432
+0:0:0:0:0:0:0:1 - - [27/Oct/2023:14:33:36 +0530] "GET /Demo/LoginServlet?username=hari&password=1234 HTTP/1.1" 404 770
+0:0:0:0:0:0:0:1 - - [27/Oct/2023:14:33:58 +0530] "GET /Demo/LoginServlet?username=hari&password=1234 HTTP/1.1" 404 770
+0:0:0:0:0:0:0:1 - - [27/Oct/2023:14:35:26 +0530] "GET /Demo/LoginServlet?username=hari&password=1234 HTTP/1.1" 404 770

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="java.lang.reflect.Array"/>
+    <fullyQualifiedTypeName name="com.yourpackage.MenuCard"/>
+    <fullyQualifiedTypeName name="java.awt.print.Book"/>
+    <fullyQualifiedTypeName name="java.util.HashSet"/>
+    <fullyQualifiedTypeName name="java.util.TreeSet"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.util.Collections"/>
+    <fullyQualifiedTypeName name="java.util.Comparator"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="pizza2.Pizza3"/>
+    <fullyQualifiedTypeName name="pizza2.Deliverable"/>
+    <fullyQualifiedTypeName name="com.pune.pizzahut.Order"/>
+    <fullyQualifiedTypeName name="pizza2.Italian"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="pizza4.Deliverable"/>
+    <fullyQualifiedTypeName name="NotfoundException.InvalidPizzaTypeException"/>
+</qualifiedTypeNameHistroy>

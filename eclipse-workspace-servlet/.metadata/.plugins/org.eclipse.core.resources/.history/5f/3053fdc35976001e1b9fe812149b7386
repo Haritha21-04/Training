@@ -1,0 +1,32 @@
+package com.example.demo.controller;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.example.demo.entity.Specialist;
+
+import jakarta.servlet.http.HttpSession;
+
+
+@Controller
+@RequestMapping("/addSpecialist")
+public class AddSpecialistController {
+
+    @Autowired
+    private Specialist specialistDao;
+
+    @PostMapping
+    public String addSpecialist(String specName, HttpSession session, Model model) {
+        boolean success = specialistDao.addSpecialist(specName);
+
+        if (success) {
+            session.setAttribute("succMsg", "Specialist Added");
+        } else {
+            session.setAttribute("errorMsg", "Something went wrong on the server");
+        }
+
+        return "redirect:/admin/index.jsp"; // Assuming you have a Thymeleaf or JSP template
+    }
+}

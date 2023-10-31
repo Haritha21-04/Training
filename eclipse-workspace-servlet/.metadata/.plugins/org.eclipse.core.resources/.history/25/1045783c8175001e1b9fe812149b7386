@@ -1,0 +1,38 @@
+<%@ page import="com.example.demo.entities.Leave" %>
+ 
+<%@ page import="java.util.List" %>
+
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+<html>
+
+<head>
+  <title>Apply Leave</title>
+</head>
+
+<body>
+
+  <h1>Apply Leave</h1>
+
+  <form:form modelAttribute="leave" method="post">
+
+    <form:input path="fromDate" type="date" />
+    <form:errors path="fromDate" cssClass="error" />
+
+    <form:input path="toDate" type="date" />
+    <form:errors path="toDate" cssClass="error" />
+
+    <form:input path="reason" />
+    <form:errors path="reason" cssClass="error" />
+
+    <form:select path="doctor">
+      <form:options items="${doctors}" /> 
+    </form:select>
+
+    <input type="submit" value="Apply Leave"/>
+  
+  </form:form>
+
+</body>
+
+</html>

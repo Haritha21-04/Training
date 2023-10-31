@@ -1,0 +1,22 @@
+package com.example.demo.services;
+
+import java.util.List;
+
+import com.example.demo.entities.Leave;
+
+// LeaveService.java
+
+public interface LeaveService {
+
+  public List<Leave> getAllLeaves();
+  
+  public Leave getLeaveById(long leaveId);
+  
+  public void applyLeave(Leave leave);
+  
+  public void approveLeave(long leaveId);
+  
+  public void rejectLeave(long leaveId);
+  
+}
+

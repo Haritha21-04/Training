@@ -1,0 +1,41 @@
+package com.example.demo.controller;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import jakarta.servlet.http.HttpSession;
+
+@Controller
+public class UpdateDoctorController {
+
+    @Autowired
+    private DoctorDao doctorDao; // Assuming you have a DoctorDao bean
+
+    @PostMapping("/updateDoctor")
+    public String updateDoctor(
+        @RequestParam("id") int id,
+        @RequestParam("fullname") String fullName,
+        @RequestParam("dob") String dob,
+        @RequestParam("qualification") String qualification,
+        @RequestParam("spec") String spec,
+        @RequestParam("email") String email,
+        @RequestParam("mobno") String mobno,
+        @RequestParam("password") String password,
+        HttpSession session, Model model
+    ) {
+        try {
+            Doctor d = new Doctor(id, fullName, dob, qualification, spec, email, mobno, password);
+
+            if (doctorDao.updateDoctor(d)) {
+                session.setAttribute("succMsg", "Doctor Updated Successfully");
+            } else {
+                session.setAttribute("errorMsg", "Something went wrong on the server");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:/admin/view_doctor.jsp";
+    }
+}

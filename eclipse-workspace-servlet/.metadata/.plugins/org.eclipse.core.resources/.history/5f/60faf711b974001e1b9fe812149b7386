@@ -1,0 +1,27 @@
+package com.example.demo.controller;
+
+@Controller
+public class DoctorLoginController {
+
+    @Autowired
+    private DoctorRepository doctorRepository;
+
+    @GetMapping("/doctor/login")
+    public String showLoginForm() {
+        return "doctor/login";
+    }
+
+    @PostMapping("/doctor/login")
+    public String processLogin(@RequestParam String username, @RequestParam String password, Model model) {
+        Doctor doctor = doctorRepository.findByUsername(username);
+
+        if (doctor != null && doctor.getPassword().equals(password)) {
+            // Successful login
+            return "redirect:/doctor/dashboard";
+        } else {
+            // Failed login, show an error
+            model.addAttribute("error", "Invalid username or password");
+            return "doctor/login";
+        }
+    }
+}

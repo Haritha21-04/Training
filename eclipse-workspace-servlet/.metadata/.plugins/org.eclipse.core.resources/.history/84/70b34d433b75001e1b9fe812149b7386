@@ -1,0 +1,12 @@
+package com.example.demo.entities;
+
+import java.time.LocalDate;
+import java.util.List;
+
+public interface AttendanceService {
+
+  public List<Attendance> getAttendanceByDate(LocalDate date);
+  
+  public void markAttendance(long doctorId, LocalDate date, boolean present);
+  
+}

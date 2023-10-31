@@ -1,0 +1,55 @@
+package com.example.demo.implementations;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.entities.Leave;
+import com.example.demo.repository.LeaveRepository;
+import com.example.demo.services.LeaveService;
+
+@Service
+public class LeaveServiceImpl implements LeaveService {
+
+  @Autowired
+  private LeaveRepository leaveRepo;
+  
+  @Override
+  public List<Leave> getAllLeaves() {
+    return leaveRepo.findAll();
+  }
+
+  @Override 
+  public Leave getLeaveById(long leaveId) {
+    Optional<Leave> leaveOpt = leaveRepo.findById(leaveId);
+    if(leaveOpt.isPresent()) {
+      return leaveOpt.get(); 
+    }
+    return null;
+  }  
+
+  @Override
+  public void applyLeave(Leave leave) {
+    leaveRepo.save(leave);
+  }
+
+  @Override
+  public void approveLeave(long leaveId) {
+    Leave leave = getLeaveById(leaveId);
+    if(leave != null) {
+      leave.setStatus("APPROVED");
+      leaveRepo.save(leave);
+    }
+  }
+  
+  @Override
+  public void rejectLeave(long leaveId) {
+	  Leave leave = getLeaveById(leaveId);
+	    if(leave != null) {
+	      leave.setStatus("REJECTED");
+	      leaveRepo.save(leave);
+	    }  }
+  
+}

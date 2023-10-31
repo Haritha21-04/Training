@@ -1,0 +1,56 @@
+package com.example.demo.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+public interface LeaveService {
+
+	  public List<Leave> getAllLeaves();
+	  
+	  public void applyLeave(Leave leave);
+	  
+	  public void approveLeave(long leaveId);
+	  
+	  public void rejectLeave(long leaveId);
+	  
+	}
+
+	@Service
+	public class LeaveServiceImpl implements LeaveService {
+
+	  @Autowired
+	  private LeaveRepository leaveRepo;
+
+	  // implementations of interface methods
+
+	  @Override
+	  public List<Leave> getAllLeaves() {
+	    return leaveRepo.findAll(); 
+	  }
+
+	  @Override
+	  public void applyLeave(Leave leave) {
+	    leaveRepo.save(leave);
+	  }
+
+	  @Override
+	  public void approveLeave(long leaveId) {
+	    Leave leave = leaveRepo.findById(leaveId).get();
+	    leave.setStatus("APPROVED");
+	    leaveRepo.save(leave); 
+	  }
+
+	  @Override
+	  public void rejectLeave(long leaveId) {
+	    // similar logic to approveLeave method
+	  }
+
+	@Override
+	public void applyLeave(Leave leave) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;MyDemoP/src/main/java/d1/ConfirmationServer.java&apos; to &apos;ConfirmationServlet.java&apos;" description="Rename resource &apos;ConfirmationServer.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/java/d1/ConfirmationServer.java" name="ConfirmationServlet.java" stamp="1697433284773" updateReferences="true"/>
+</session>

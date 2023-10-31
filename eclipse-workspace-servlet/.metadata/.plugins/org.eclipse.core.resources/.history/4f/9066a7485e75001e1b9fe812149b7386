@@ -1,0 +1,44 @@
+package com.example.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import jakarta.servlet.http.HttpSession;
+
+import com.example.demo.entity.User;
+import com.example.demo.repository.UserRepository;
+
+@Controller
+public class UserController {
+    @Autowired
+    private UserRepository userRepository;
+
+    @GetMapping("/login")
+    public String userLoginPage() {
+        return "login"; // Assuming you have a JSP file named "user-login.jsp" for user login
+    }
+
+    @GetMapping("/dashboard")
+    public String userDashboardPage() {
+        return "dashboard"; // Assuming you have a JSP file for the user's dashboard
+    }
+
+    @PostMapping("/login")
+    public String userLogin(@RequestParam String username, @RequestParam String password, HttpSession session) {
+        // You can now use the userRepository
+        User userFromDB = ((Object) userRepository).findByUsernameAndPassword(username, password);
+
+        if (userFromDB != null) {
+            // Authentication successful
+            session.setAttribute("loggedInUser", userFromDB);
+            return "redirect:/user-dashboard"; // Redirect to the user's dashboard page
+        } else {
+            // Authentication failed
+            return "redirect:/user-login?error=1"; // Redirect to the user login page with an error message
+        }
+    }
+
+    }
+}

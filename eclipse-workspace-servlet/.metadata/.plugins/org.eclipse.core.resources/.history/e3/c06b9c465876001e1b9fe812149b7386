@@ -1,0 +1,26 @@
+package com.example.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.demo.entity.Doctor;
+
+@Controller
+public class DeleteDoctorController {
+
+    @Autowired
+    private Doctor doctorDao; // Assuming you have a DoctorDao bean
+
+    @GetMapping("/deleteDoctor")
+    public String deleteDoctor(@RequestParam("id") int id, HttpSession session, Model model) {
+        if (doctorDao.deleteDoctor(id)) {
+            session.setAttribute("succMsg", "Doctor Deleted Successfully");
+        } else {
+            session.setAttribute("errorMsg", "Something went wrong on the server");
+        }
+        return "redirect:/admin/view_doctor.jsp";
+    }
+}

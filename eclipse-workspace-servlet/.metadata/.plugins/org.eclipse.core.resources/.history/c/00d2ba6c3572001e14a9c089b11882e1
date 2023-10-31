@@ -1,0 +1,5 @@
+package com.demo.HibernateDemo.Config.entities;
+
+public class Category {
+
+}

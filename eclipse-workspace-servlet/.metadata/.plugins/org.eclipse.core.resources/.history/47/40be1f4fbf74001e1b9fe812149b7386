@@ -1,0 +1,33 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor Dashboard</title>
+</head>
+<body>
+    <h2>Welcome to the Doctor Dashboard</h2>
+
+    <p>Hello, <%= session.getAttribute("loggedInDoctor.fullName") %>!</p>
+
+    <h3>Appointments</h3>
+    <ul>
+        <li><a href="/doctor/appointments">View Appointments</a></li>
+        <li><a href="/doctor/schedule">Schedule New Appointment</a></li>
+    </ul>
+
+    <h3>Leave and Availability</h3>
+    <ul>
+        <li><a href="/doctor/leave">Manage Leave</a></li>
+        <li><a href="/doctor/availability">Set Availability</a></li>
+    </ul>
+
+    <h3>Profile</h3>
+    <ul>
+        <li><a href="/doctor/profile">Edit Profile</a></li>
+        <li><a href="/doctor/change-password">Change Password</a></li>
+    </ul>
+
+    <a href="/doctor/logout">Logout</a>
+</body>
+</html>

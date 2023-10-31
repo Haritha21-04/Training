@@ -1,0 +1,44 @@
+package com.example.demo.controller;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
+@Controller
+@RequestMapping("/updateStatus")
+public class UpdateStatusController {
+
+    private final AppointmentDAO appointmentDAO;
+
+    public UpdateStatusController(AppointmentDAO appointmentDAO) {
+        this.appointmentDAO = appointmentDAO;
+    }
+
+    @PostMapping
+    public String updateStatus(HttpServletRequest req, RedirectAttributes redirectAttributes) {
+        try {
+            int id = Integer.parseInt(req.getParameter("id"));
+            int did = Integer.parseInt(req.getParameter("did"));
+            String comm = req.getParameter("comm");
+
+            if (appointmentDAO.updateCommentStatus(id, did, comm)) {
+                HttpSession session = req.getSession();
+                session.setAttribute("succMsg", "Comment Updated");
+                return "redirect:/doctor/patient"; // Redirect to the doctor's patient page
+            } else {
+                redirectAttributes.addFlashAttribute("errorMsg", "Something wrong on the server");
+                return "redirect:/doctor/patient"; // Redirect back to the patient page
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "errorPage"; // Handle exceptions by redirecting to an error page
+        }
+    }
+}
+

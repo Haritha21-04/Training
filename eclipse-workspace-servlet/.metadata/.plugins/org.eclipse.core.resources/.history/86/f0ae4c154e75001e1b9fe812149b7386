@@ -1,0 +1,38 @@
+
+<%@ page import="java.util.List" %>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<html>
+<head>
+  <title>Attendance</title>
+</head>
+<body>
+
+  <h1>Attendance</h1>
+  
+  <form action="/admin/attendance" method="post">
+  
+    <table>
+      <tr>
+        <th>Doctor</th>
+        <th>Present</th>  
+      </tr>
+    
+      <c:forEach items="${attendance}" var="att">
+        <tr>
+          <td>${att.doctor.name}</td>
+          <td>
+            <input type="radio" name="id" value="${att.doctor.id}">
+          </td>
+        </tr>
+      </c:forEach>
+      
+    </table>
+    
+    <input type="submit" value="Mark Attendance">
+  
+  </form>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+package com.example.demo.services;
+
+import java.util.List;
+
+public interface DoctorService<Doctor> {
+
+	  public List<Doctor> getAllDoctors();
+	  
+	  public Doctor getDoctorById(long id);
+	  
+	  public void addDoctor(Doctor doctor);
+	  
+	  public void updateDoctor(Doctor doctor);
+	  
+	  public void deleteDoctor(long id);
+	  
+	}

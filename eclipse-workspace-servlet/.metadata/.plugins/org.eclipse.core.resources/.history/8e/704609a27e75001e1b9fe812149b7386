@@ -1,0 +1,56 @@
+package com.example.demo.services;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.entities.Leave;
+import com.example.demo.repository.LeaveRepository;
+
+import java.util.List;
+
+@Service
+public class LeaveService {
+    private final LeaveRepository leaveRepository;
+
+    @Autowired
+    public LeaveService(LeaveRepository leaveRepository) {
+        this.leaveRepository = leaveRepository;
+    }
+
+    public List<Leave> getAllLeaves() {
+        return leaveRepository.findAll();
+    }
+
+    public Leave getLeaveById(Long id) {
+        return leaveRepository.findById(id).orElse(null);
+    }
+
+    public Leave createLeave(Leave leave) {
+        return leaveRepository.save(leave);
+    }
+
+    public Leave updateLeave(Long id, Leave updatedLeave) {
+        if (leaveRepository.existsById(id)) {
+            updatedLeave.setId(id);
+            return leaveRepository.save(updatedLeave);
+        }
+        return null;
+    }
+
+    public boolean deleteLeave(Long id) {
+        if (leaveRepository.existsById(id)) {
+            leaveRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+	public void approveLeave(long leaveId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void rejectLeave(long leaveId) {
+		// TODO Auto-generated method stub
+		
+	}
+}

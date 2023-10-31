@@ -1,0 +1,54 @@
+package com.example.demo.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/admin")
+public class AdminController {
+
+  @Autowired
+  private LeaveService leaveService;
+
+  @Autowired
+  private AttendanceService attendanceService;
+
+  @GetMapping
+  public String adminHome() {
+    return "adminHome";
+  }
+
+  @GetMapping("/leaves")
+  public String getLeaves(Model model) {
+    List<Leave> leaves = leaveService.getAllLeaves();
+    model.addAttribute("leaves", leaves);
+    return "leaves";
+  }
+
+  @PostMapping("/leaves/approve") 
+  public String approveLeave(@RequestParam("id") long leaveId){
+    leaveService.approveLeave(leaveId);
+    return "redirect:/admin/leaves"; 
+  }
+
+  @PostMapping("/leaves/reject")
+  public String rejectLeave(@RequestParam("id") long leaveId){
+    leaveService.rejectLeave(leaveId);
+    return "redirect:/admin/leaves";
+  }
+  
+  @GetMapping("/attendance")
+  public String getAttendance(Model model) {
+    List<Attendance> attendance = attendanceService.getAttendance();
+    model.addAttribute("attendance", attendance);
+    return "attendance";
+  }
+
+  @PostMapping("/attendance")
+  public String markAttendance(@RequestParam("id") long doctorId,
+                               @RequestParam("present") boolean present){
+    attendanceService.markAttendance(doctorId, present);
+    return "redirect:/admin/attendance";
+  }
+
+}

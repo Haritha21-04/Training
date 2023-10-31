@@ -1,0 +1,35 @@
+<%@ page import="com.example.demo.entities.Leave" %>
+<%@ page import="java.util.Date" %>  
+
+<html>
+<head>
+  <title>Apply Leave</title>
+</head>
+
+<body>
+
+  <h1>Apply Leave</h1>
+  
+  <form action="submitLeave" method="post">
+  
+    <label>From Date:</label>
+    <input type="date" name="fromDate" />
+    
+    <label>To Date:</label>	
+    <input type="date" name="toDate" />
+
+    <label>Reason:</label>
+    <input type="text" name="reason" />
+    
+    <label>Doctor:</label>
+    <select name="doctorId">
+      <option value="1">Dr. John</option> 
+      <option value="2">Dr. Sarah</option>
+    </select>
+
+    <input type="submit" value="Apply Leave" />
+  
+  </form>
+
+</body>
+</html>
