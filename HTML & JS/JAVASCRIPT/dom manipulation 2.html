@@ -1,0 +1,32 @@
+<!--without using more builtin func-->
+<html><head><title>DOM Manuplation2</title>
+</head> <body>
+    <script>
+        function enableDisable(){
+            //if checkbox is checked , checked will be true else false
+            v=document.forms[0].status.value;
+            //window.alert(document.forms[0].status.checked);
+            var b=document.getElementById("submit1")
+            if(v==true)
+               b.enabled=true; //disable=false (sir)
+            else
+               b.disabled=false;//disable=true
+        }
+        function showName(){
+        dv=document.getElementById("d1");
+        dv.innerHTML+="<b>" + document.forms[0].firstname.value + "</b><br>";
+    }
+    </script>
+
+    <form>
+        Name <input type="text" name="firstname"/><br>
+        Agree to Terms and Conditions <input type="checkbox" 
+        name="status" onClick="enableDisable()" />
+        <br><input type="button" value="Save" id="submit1" 
+        onclick="showName()" disabled/>
+    </form>
+    <div id="d1" width="500px" height="200px" style="border:3px dotted"> </div>
+    
+</body></html>
+
+

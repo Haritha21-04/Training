@@ -1,0 +1,37 @@
+<html><body>
+<script>
+    function saveData()
+    {
+          i=document.forms[0].isbnno.value;
+          t=document.forms[0].booktitle.value;
+          console.log(i);
+          console.log(t);
+          sessionStorage.isbn=i;
+          sessionStorage.title=t;
+    }
+    function getData()
+    {
+          para=document.getElementsByName("data");
+          para[0].innerHTML = sessionStorage.isbn;
+          para[1].innerHTML = sessionStorage.title;   
+    }
+          
+</script>
+<center>
+<b>Book Details</b><br>
+<form>
+ISBN&nbsp;&nbsp;<input type="text" name="isbnno" /><br>
+TITLE&nbsp;&nbsp;<input type="text" name="booktitle" /><br>
+<br>
+
+<input type="Button" value="Save" onclick="saveData()" />&nbsp;&nbsp;
+<input type="Button" value="Get" onclick="getData()" />&nbsp;&nbsp;
+<input type="Reset" value="Reset" />
+</form>
+<BR><BR><p name="data">Book Data</p>
+<br><p name="data" >All Books in the library</p>
+</center>
+</body></html>
+
+ 
+        

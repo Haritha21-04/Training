@@ -1,0 +1,20 @@
+//select employee_id,concat(first_name || last_name) empname,salary,(salary+10000)/12 as annsal
+select employee_id,first_name,last_name,job_id,
+salary,commission_pct as commission
+from employees
+//where salary>5000 and salary<10000
+where job_id='IT_PROG'
+
+
+select employee_id,first_name,last_name,salary,commission_pct,
+salary+ifnull(salary*commission_pct,0) netsal
+from employees
+order by commission_pct desc,salary asc
+-- where commission_pct is not null
+-- where salary between 5000 and 8000
+
+
+select employee_id,first_name,job_id from employees
+-- department_id=50 or department_id=60 or department_id=50  -- (or)
+where department_id in (50,60,80)
+where job_id like '%CLERK'

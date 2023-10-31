@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Classes in Javascript</h2>
+<p>Creating two bike objects from a bike class:</p>
+
+
+<script>
+    class Bike{
+        name="RE";
+        year="2010";
+
+        //Change value of variables
+        setName(bikeName){
+            this.name = bikeName;
+        }
+        setYear(mfgYear){
+            this.year = mfgYear;
+        }
+        getName(){
+            return this.name;
+        }
+        getYear(){
+            return this.year;
+        }
+    }
+    const b1 = new Bike();
+    function setValues(){
+        bikename=document.getElementById("bikename").value;
+        mfgyear=document.getElementById("mfgyear").value;
+        b1.setName(bikename);
+        b1.setYear(mfgyear);
+        alert("Data saved successfully");
+    }
+    function getValues(){
+        document.getElementById("demo1").innerHTML = b1.getName() + " " + b1.getYear();
+    }
+</script>
+<form>
+    Bike Name: <br>
+    <input type="text" id="bikename"/><br>
+    Manufactured Year: <br>
+    <input type="text" id="mfgyear"/><br><br>
+    <input type="button" value="Save" onclick="setValues()"/>&nbsp;&nbsp;
+    <input type="button" value="Get" onclick="getValues()"/>
+</form>
+<br>
+<div>
+    <p id="demo1"></p>
+</div>
+</body>
+</html>

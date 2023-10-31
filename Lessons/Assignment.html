@@ -1,0 +1,174 @@
+<html>
+  <head>
+    
+    <style>
+      
+      body {
+      font-family: Arial, sans-serif;
+      background-color: rgb(228, 230, 234);
+ 
+    }
+
+    form {
+      width: 60%;
+      margin: 10px auto;
+      
+    
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-style: inset;
+      background-color: rgb(175, 233, 162);
+      
+    }
+
+    input[type="submit"] {
+      background-color: #000;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .error {
+      color: red;
+      font-size: 12px;
+    }
+    </style>
+  </head>
+
+  <body>
+    <form  name="MyForm" onsubmit="return" validateForm()>
+      <h1 style="color:red;"><b>Tell me about your self</b></h1>
+      <h1 style="color:rgb(30, 0, 255);"><b>Your Name</b></h1>
+      <lable style="color:rgb(255, 0, 166);" for="firstName"><i>First Name:</i></lable>
+      <input name="firstName" type="text" id="firstName" required /><br />
+      <lable style="color:rgb(255, 0, 166);" for="lastName"><i>Last Name:</i></lable>
+     <input name="lastName" type="text" id="lastName" required /><br />
+     <lable style="color:rgb(30, 0, 255);" for="Postal Code"><h2>postalCode:</h2></lable>
+      <input name="postalCode" type="text" id="postalCode" required /><br />
+      <h1 style="color:red;"><b>Type Your userID and Password</b></h1>
+      <lable style="color:rgb(30, 0, 255);" for="userID"><h2>User ID:</h2></lable>
+       <input name="userID" type="text" id="userID" required /><br />
+       <lable style="color:rgb(30, 0, 255);" for="password"><h2>Password:</h2></lable>
+      <input name="password" type="password" id="password" required /><br />
+      <lable style="color:rgb(30, 0, 255);" for="retypePassword"><h2>Retype Password:</h2></lable>
+      <input
+        name="retypePassword"
+        type="password"
+        id="retypePassword"
+        required
+      /><br />
+      <button onclick="validateForm()">Submit</button>
+      <button type="reset">Reset</button>
+    </form>
+
+    <script type="text/javascript">
+      function validateForm() {
+        var firstName = document.getElementById("firstName").value;
+        var lastName = document.getElementById("lastName").value;
+        var postalCode = document.getElementById("postalCode").value;
+        var userID = document.getElementById("userID").value;
+        var password = document.getElementById("password").value;
+        var retypePassword = document.getElementById("retypePassword").value;
+        var submitOK = true;
+
+        console.log(firstName);
+
+        if (firstName.length > 25) {
+          window.alert("The first name must be less than 25 characters");
+          document.getElementById("firstName").focus();
+          submitOK = false;
+          return false;
+        }
+
+        if (lastName.length > 25) {
+          window.alert("The last name must be less than 25 characters");
+          document.getElementById("lastName").focus();
+          submitOK = false;
+          return false;
+        }
+
+        if (firstName.match(/[^a-zA-Z ]/)) {
+          window.alert("The first name must contain only alphabets");
+          document.getElementById("firstName").focus();
+          submitOK = false;
+          return false;
+        }
+
+        if (lastName.match(/[^a-zA-Z ]/)) {
+          window.alert("The last name must contain only alphabets");
+          document.getElementById("lastName").focus();
+          submitOK = false;
+          return false;
+        }
+
+        if (isNaN(postalCode) || postalCode.length < 6) {
+          window.alert("The postal code must be a number of 6 digits");
+          document.getElementById("postalCode").focus();
+          submitOK = false;
+          return false;
+        }
+
+        if (userID.length < 6) {
+          window.alert("The user ID must be a minimum of 6 characters");
+          document.getElementById("userID").focus();
+          submitOK = false;
+          return false;
+        }
+
+        if (userID.match(/[^a-zA-Z0-9]/)) {
+          window.alert("The userID must contain only alphabets and numbers");
+          document.getElementById("userID").focus();
+          submitOK = false;
+          return false;
+        }
+
+        if (userID.charAt(0).match(/[^a-zA-Z]/)) {
+          window.alert("The userID must start with an alphabet");
+          document.getElementById("userID").focus();
+          submitOK = false;
+          return false;
+        }
+
+        if (password.length < 8) {
+          window.alert("The password must be a minimum of 8 characters");
+          document.getElementById("password").focus();
+          submitOK = false;
+          return false;
+        }
+
+        if (password.match(/[^a-zA-Z0-9]/)) {
+          window.alert("password must contain only alphabets and numbers");
+          document.getElementById("password").focus();
+          submitOK = false;
+          return false;
+        }
+
+        if (password.charAt(0).match(/[^a-zA-Z]/)) {
+          window.alert(" password must start with an alphabet");
+          document.getElementById("password").focus();
+          submitOK = false;
+          return false;
+        }
+
+        if (password != retypePassword) {
+          window.alert("The passwords do not match");
+          document.getElementById("password").focus();
+          submitOK = false;
+          return false;
+        }
+
+        if (submitOK) {
+          window.open( "http://www.ndparking.com")
+          return true;
+        }
+
+        window.alert("fill in all the fields");
+
+        return false;
+      }
+    </script>
+  </body>
+</html>

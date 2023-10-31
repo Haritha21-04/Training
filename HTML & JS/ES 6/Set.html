@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>ES6 Sets</h2>
+<p>Add values to a Set:</p>
+
+<p id="demo"></p>
+<p id="forofloop"> </p>
+<script>
+// Create a Set
+const letters = new Set();
+
+// Add Values to the Set
+letters.add("a");
+letters.add("b");
+letters.add("c");
+// Display set.size
+document.getElementById("demo").innerHTML = letters.size;
+let itr=letters.values();
+
+for(i=0;i<letters.size;i++){
+    var lt=itr.next();
+document.getElementById("demo").innerHTML += "<br>" + lt.value;
+}
+for(v of letters)//displaying in easier way
+document.getElementById("forofloop").innerHTML += v + "<br>";
+
+</script>
+</body>
+</html> 

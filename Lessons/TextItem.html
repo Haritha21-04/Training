@@ -1,0 +1,38 @@
+<html>
+<head>
+<script type="text/javascript">
+function convert()
+{
+
+	var a = document.MyForm.FirstName.value; //document.MyForm.FirstName.value;
+	document.MyForm.FirstName.value = a.toUpperCase ();
+	var b = document.getElementById ("LastName").value;//ln=document.getElementById ("LastName")
+	document.getElementById ("LastName").value = b.toUpperCase();//var b=ln.value 
+	//ln.value =b.toUpperCase
+}
+function checkFirstName(){
+	console.log("",length);
+	console.log(" ",length);
+    var a = document.MyForm.FirstName.value;
+	if(a == ""){
+	   er=document.getElementById("error");
+	   er.innerHTML="Fill your Name";
+	}
+	function clearMessage(){
+		er=document.getElementById("error");
+	    er.innerHTML="*";
+	}
+}
+</script>
+</head>
+
+<body>
+<form name="MyForm">
+<input name = "FirstName" type="text" id="MyName" onblur="checkFirstName()" onfocus="clearMessage()"/>
+<label id = "error" style="color:red ">*</label><br>
+<input name = "LastName" type="text" id="LastName" /><br>
+<input type="button" onclick="convert()" value="Convert" />
+</form>
+</body>
+</html>
+

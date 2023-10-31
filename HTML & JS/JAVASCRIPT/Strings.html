@@ -1,0 +1,37 @@
+<!-- Names of all builtin functions starts with small case ,
+     first letter of second and successive words will be in capital
+    lastIndexOf() , freeSystemMemory(),passCodeAuthentication()
+     Names of all the builtin objects,keywords,control statements will be fully in small case 
+    Names of all the builtin classes will start with capital case, 
+    first letter of successive words also will be in capital case
+     eg String,Array,Number,Math,RegularExp
+-->
+
+<html><body>
+    <script>
+        name="GAVS Technologies , Chennai ";
+        document.writeln("Length" + name.length);
+        document.writeln("<br>Position of e= " + name.indexOf('e'));
+        document.writeln("<br>Last Position of e " + name.lastIndexOf('e'));
+        document.writeln("<br>Character @ 11: " + name.charAt(11));
+        document.writeln("<br>All Characters from 6th pos: " + 
+        name.substr(6,15));
+        document.writeln("<br>All Characters from 6th to 15th pos: " + 
+        name.substr(6,15));
+        names=name.split(' ');
+
+        document.writeln("<br>names[0]: " + names [0]);
+        document.writeln("<br>names[1]: " + names [1]);
+        document.writeln("<br>names[2]: " + names [2]);
+        document.writeln("<br>names[3]: " + names [3]);
+        document.writeln("<br>Upper case " + name.toUpperCase());
+        document.writeln("<br>Lower case " + name.toLowerCase());
+         arr=name.slice(' ');
+         document.writeln("<br>" + arr[0]);
+         document.writeln("<br>" + arr[1]);
+         document.writeln("<br>" + arr[2]);
+         document.writeln("<br>" + arr[3]);
+
+
+    </script>
+    </body></html>

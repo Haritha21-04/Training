@@ -1,0 +1,45 @@
+<html>
+<head>
+</head>
+
+<body>
+<script type="text/javascript">
+function validate()
+{
+var em=document.getElementById("email")
+var emvalue=em.value;
+var at=emvalue.indexOf("@")
+console.log("@")
+var age=document.getElementById("age").value
+var fname=document.getElementById("fname").value
+submitOK=true
+}
+
+if (at==-1) 
+ {
+ alert("Not a valid e-mail!")
+document.getElementById ("email").focus ()
+ submitOK=false
+ }
+ if(emvalue.indexOf(".com") == -1 || emvalue.indexOf(".net") == -1||
+      emvalue.indexOf(".edu") == -1){
+        submitOK=false;
+        window.alert("Invalid email. .com/ .edu/ .net not pre....");
+      }
+if (!submitOK)
+ {
+ return false
+ }
+
+</script>
+
+<form id="MyForm" name="Validation" action="javascript:alert('All Ok')" onsubmit="return validate()">
+Name (max 10 chararcters): <input maxlength="30" minlength="5" type="text" id="fname" size="30"><br />
+Age (from 1 to 100): <input type="number" min="18" max="65" id="age" size="20"><br />
+E-mail: <input type="text" id="email" size="20"><br />
+<br />
+<input type="submit" value="Submit"> 
+</form>
+</body>
+</html>
+

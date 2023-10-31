@@ -1,0 +1,20 @@
+1.	 Read an integer value. Assume it is the number of a month of the year; print out the name of that month. ( using SWITCH statement)
+2.	Write a program to read in numbers until the number -999 is encountered. The sum of all number read until this point should be printed out.
+3. If a number 972 is entered through the keyboard, your program should print “Nine Seven Two”. Write a program such that it does this for any positive integer.
+4. Write a program that generating the frequency distribution of the given data. Assuming that the data consists of 10 positive integers. Count how many numbers are occurred in each of the following ranges and print the data as follows:
+	( 
+	if the data is 15,25,35,45,56,68,74,83,92,102  then the result should be as follows ..
+
+	Range			Frequency
+	0 - 9 			   0
+	10 – 19			   1
+	20 – 29		      	   1
+	30 – 39 	   	   1
+	40 – 49 		   1
+	50 – 59		   	   1
+	60 – 69		   	   1
+	70 – 79		   	   1
+	80 – 89		   	   1
+	90 – 99		   	   1
+	> 100			   1 
+)

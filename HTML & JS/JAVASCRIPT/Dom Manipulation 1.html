@@ -1,0 +1,42 @@
+<!-- using builtin functions-->
+<html><head><title>DOM Manuplation1</title>
+    </head> <body>
+        <script>
+            function enableDisable(){
+                //if checkbox is checked , checked will be true else false
+                v=document.forms[0].status.value;
+                //window.alert(document.forms[0].status.checked);
+                var b=document.getElementById("submit1")
+                if(v==true)
+                   b.enabled=true; //disable=false (sir)
+                else
+                   b.disabled=false;//disable=true
+            }
+            function showName(){
+            btag=document.createElement("b");
+            //window.alert(btag)
+            txtnode=document.createTextNode
+            (document.forms[0].firstname.value);
+            
+            btag.appendChild(txtnode);
+            dv=document.getElementById("d1");
+            dv.appendChild(btag);
+
+            brtag=document.createElement("br");
+            //dv.appendChild(brtag);
+            dv.innerHTML+="<br>"
+        }
+        </script>
+
+        <form>
+            Name <input type="text" name="firstname"/><br>
+            Agree to Terms and Conditions <input type="checkbox" 
+            name="status" onClick="enableDisable()" />
+            <br><input type="button" value="Save" id="submit1" 
+            onclick="showName()" disabled/>
+        </form>
+        <div id="d1" width="500px" height="400px" style="border:5px dashed"> </div>
+        
+    </body></html>
+    
+

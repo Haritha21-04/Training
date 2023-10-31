@@ -1,0 +1,40 @@
+<html>
+    <body>
+        <p >class in javascript</p>
+    <p>Creating two bike objects from a bike class:</p>
+
+    <p id="demo"></p></p>
+    <script>
+    class Bike
+    {
+        name="RE";
+        year="2010";
+
+        //changes value of variables
+        setName(BikeName)
+        {
+            this.name=BikeName;
+            
+        }
+        setYear(mfgYear)//for changing values
+        {
+            this.year=mfgYear;
+        }
+        getYear()//return the value of var dont take parameter , for returning values
+        {
+            return this.year;
+        }
+        getName()
+        {
+            return this.name;
+        }
+    }
+    const b1 = new Bike();
+    //b1.name="Triumph"; b1.year="2020"; replaced by
+    b1.setName("Royal Enfield");
+    b1.setYear("2020");
+    document.getElementById("demo").innerHTML=
+    b1.getName() + " " + b1.getYear();
+    </script>
+    </body>
+</html>

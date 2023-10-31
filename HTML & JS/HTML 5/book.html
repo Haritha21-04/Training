@@ -1,0 +1,38 @@
+<html><body>
+<script>
+    function saveData()
+    {
+          i=document.forms[0].bikename.value;
+          t=document.forms[0].mfgyear.value;
+          console.log(i);
+          console.log(t);
+          localStorage.bikename=i;
+          localStorage.mfgyear=t;
+    }
+    function getData()
+    {
+          para=document.getElementsByName("data");
+          para[0].innerHTML = localStorage.bikename;
+          para[1].innerHTML = localStorage.mfgyear;   
+    }
+          
+</script>
+
+<center>
+
+<form>
+bikename&nbsp;&nbsp;<input type="text" name="bikename" /><br>
+mfgyear&nbsp;&nbsp;<input type="text" name="mfgyear" /><br>
+<br>
+
+<input type="Button" value="Save" onclick="saveData()" />&nbsp;&nbsp;
+<input type="Button" value="Get" onclick="getData()" />&nbsp;&nbsp;
+
+</form>
+<BR><BR><p name="data">Book Data</p>
+<br><p name="data" >All Books in the library</p>
+</center>
+</body></html>
+
+ 
+        

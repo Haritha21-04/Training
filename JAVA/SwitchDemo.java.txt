@@ -1,0 +1,25 @@
+public class SwitchDemo
+{
+ public static void main(String ar[]){
+      char ch=ar[0].charAt(0);
+      switch(ch){
+                case 'a':
+                case 'e':
+                case 'i':
+                case 'o':
+                case 'u':{
+                          System.out.println("Vowel");
+                            break;
+                         }
+              case 'b':
+              case 'c';{
+                         System.out.println("Consenant");
+                            break;
+                        }
+                    default{
+                        System.out.println("Special Character");
+                            break;
+                           }
+                  }
+                                      }
+}

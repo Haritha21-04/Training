@@ -1,0 +1,66 @@
+<html>
+<head>
+ <script type="text/javascript">
+function AppendNewListItem()
+{
+ var li = document.createElement("li");
+ var liText = document.createTextNode("New List Item");
+ li.appendChild(liText);
+ List.appendChild(liText);
+}
+
+function PrependNewListItem()
+{
+ var li=  document.createElement("li");
+ var liText = document.createTextNode("New List Item");
+ li.appendChild(liText);
+ List.append(li,List.Children[2]);
+ //List.insertBefore(li,List.firstChild);
+}
+
+
+function ChangeStartNum()
+{
+ var start=List.getAttribute("start");
+ if (start != undefined)
+  start++;
+ else
+  start=100;
+ List.setAttribute("start",start);
+}
+
+function ReplaceOlWithUl()
+{
+ List.parentNode.replaceChild(List2,List);
+ List = List2
+}
+
+var List, List2;
+function init()
+{
+ List = document.getElementById("TheList");
+ List2 = document.getElementById("TheList2");
+}
+</script>
+<title>Inserting Nodes</title>
+</head>
+
+<body onload="init()">
+<div onclick="AppendNewListItem()">Append List Item</div>
+<div onclick="PrependNewListItem()">Prepend List Item</div>
+<div onclick="ChangeStartNum()">Change Start Number</div>
+<div onclick="ReplaceOlWithUl()">Replace ordered list with bulleted list</div>
+<ol id="TheList">
+ <li>List Item</li>
+ <li>List Item</li>
+ <li>List Item</li>
+ <li>List Item</li>
+</ol>
+<ul id="TheList2">
+ <li>List Item</li>
+ <li>List Item</li>
+ <li>List Item</li>
+ <li>List Item</li>
+</ul>
+</body>
+</html>

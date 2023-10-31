@@ -1,0 +1,49 @@
+<html>
+<head>
+<script type="text/javascript">
+var txt=""
+function reverse(s)
+{
+   var sReverse = "";
+   for (var k = 1; k < s.length; k++)
+   {
+      sReverse = s.charAt(k) + sReverse;
+   }
+   return sReverse;
+}
+
+function message()
+{
+try
+   {
+      //i++;
+      alert("Debugging is a process of");
+      alert("find the location of error and ");
+      alert("Fixing it");
+      var rev=reverse ("Hello");
+	document.write ("reversed string" + rev + "br" );
+   alert("Welcome guest!")
+   }
+catch(err)
+   {
+     txt=err.message;
+     txt+="\n Click OK to continue viewing this page,\n";
+     
+	window.alert (txt);
+   } finally
+	{
+		document.write ("Error Processed.");//finally block occurs whether exception is happened or not happened//
+	}
+
+    
+
+}
+</script>
+</head>
+
+<body>
+<input type="button" value="View message" onclick="message()" />
+</body>
+
+</html>
+

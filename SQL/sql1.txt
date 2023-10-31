@@ -1,0 +1,15 @@
+Departments list
+
+select first_name,department_name from
+employees e left join departments d
+on e.department_id=d.department_id
+
+
+
+
+Employee and manager details
+
+select e.first_name employee,m.first_name manager
+from employees e
+left join employees m
+on e.manager_id=m.employee_id
